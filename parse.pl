@@ -39,23 +39,25 @@ my %title = (
 );
 
 my @sources = ('zavtraki','pervie-bluda','vtorie-bluda','salati','garniry','vipechka','sousy','napitki');
+my $w = <>;
+chomp $w;
 
 my $ua = Mojo::UserAgent->new;
+my $i = 1; #Counting items
 
 foreach my $source(@sources){
-
 	my $dom = Mojo::DOM->new($ua->get('http://emrk/crw/'.$source)->result->body);
 
 	print "$title{$source}\n";
 
 	my @items = $dom->find('div[itemprop]')->map('text');
-	my $f = 0;
+	my $f = 0; #Clear formatting flag
+
 
 	foreach my $item (@items){
 		pop @{$item};
 		shift @{$item};
 		foreach my $key (@{$item}){
-
 			$key=~s/^\s+(\d+)\s+$/$1/;
 			$key=~s/^\s+$//;
 
@@ -63,9 +65,9 @@ foreach my $source(@sources){
 				if($f==1){
 					print "$key\n";
 					$f=0;
-	
+					$i++;	
 				}else{
-					print "$key;";
+					print "$w-$i;$key;";
 					$f++;
 				};
 			
