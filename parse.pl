@@ -39,8 +39,6 @@ my %title = (
 );
 
 my @sources = ('zavtraki','pervie-bluda','vtorie-bluda','salati','garniry','vipechka','sousy','napitki');
-my $w = <>;
-chomp $w;
 
 my $ua = Mojo::UserAgent->new;
 my $i = 1; #Counting items
@@ -67,7 +65,7 @@ foreach my $source(@sources){
 					$f=0;
 					$i++;	
 				}else{
-					print "$w-$i;$key;";
+					print "\@-$i;$key;";
 					$f++;
 				};
 			
