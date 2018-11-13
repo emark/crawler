@@ -46,7 +46,7 @@ my $ua = Mojo::UserAgent->new;
 my $i = 1; #Counting items
 
 foreach my $source(@sources){
-	my $dom = Mojo::DOM->new($ua->get('http://emrk/crw/'.$source)->result->body);
+	my $dom = Mojo::DOM->new($ua->get('http://localhost/crw/'.$source)->result->body);
 
 	print "$title{$source}\n";
 
